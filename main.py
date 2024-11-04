@@ -1,17 +1,19 @@
 import pygame
 import sys
-
+from pygame.locals import *
 
 pygame.init()
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 800
+SCREEN_WIDTH = 1012
+SCREEN_HEIGHT = 750
 BG_COLOR = (255, 255, 255)
 BOARD_SIZE = 8
 TILE_SIZE = SCREEN_WIDTH // BOARD_SIZE
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE)
 pygame.display.set_caption("racing-machine")
+background = pygame.image.load("./models/track.jpg")
+
 
 
 while True:
@@ -21,14 +23,8 @@ while True:
             pygame.quit()
             sys.exit()
 
-    for row in range(BOARD_SIZE):
-        for col in range(BOARD_SIZE):
-            if (row + col) % 2 == 0:
-                color = (255, 255, 255)
-            else:
-                color = (0, 0, 0)
+    screen.blit(background, (0,0))
 
-            pygame.draw.rect(screen, color, (col * TILE_SIZE, row * TILE_SIZE, TILE_SIZE, TILE_SIZE))
 
     pygame.display.update()
 
