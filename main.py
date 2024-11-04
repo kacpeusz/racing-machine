@@ -1,32 +1,33 @@
 import pygame
 import sys
+import settings
+import vehicle
 from pygame.locals import *
+
+from vehicle import Vehicle
 
 pygame.init()
 
-SCREEN_WIDTH = 1012
-SCREEN_HEIGHT = 750
-BG_COLOR = (255, 255, 255)
-BOARD_SIZE = 8
-TILE_SIZE = SCREEN_WIDTH // BOARD_SIZE
+screen = pygame.display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT), pygame.RESIZABLE)
+pygame.display.set_caption(settings.WINDOW_TITLE)
 
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.RESIZABLE)
-pygame.display.set_caption("racing-machine")
-background = pygame.image.load("./models/track.jpg")
-
-
+vehicle = Vehicle(settings.VEHICLE_WIDTH //2, settings.VEHICLE_HEIGHT //2)
 
 while True:
+
+    screen.blit(settings.background, (0, 0))
+
+    vehicle.draw(screen)
+
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
-    screen.blit(background, (0,0))
+    vehicle.handle_movement()
 
-
-    pygame.display.update()
+    pygame.display.flip()
 
 pygame.quit()
 
