@@ -10,7 +10,7 @@ pygame.init()
 screen = pygame.display.set_mode((settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT), pygame.RESIZABLE)
 pygame.display.set_caption(settings.WINDOW_TITLE)
 
-vehicle = Vehicle(50, 50, 0.1, 0.1)
+vehicle = Vehicle(570, 45, settings.VEHICLE_ROTATION_VELOCITY, settings.VEHICLE_MAX_VELOCITY)
 
 while True:
 

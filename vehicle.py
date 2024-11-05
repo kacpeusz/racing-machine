@@ -10,11 +10,10 @@ class Vehicle:
         self.height = settings.VEHICLE_HEIGHT
         self.x = x
         self.y = y
-        self.speed = settings.VEHICLE_SPEED
-        self.angle = 0
+        self.angle = 90
         self.vel = 0
         self.rotation_vel = rotation_vel
-        self.acceleration = 0.1
+        self.acceleration = 0.001
         self.max_vel = max_vel
 
     def rotate(self, left=False, right=False):
@@ -25,15 +24,20 @@ class Vehicle:
 
     def handle_movement(self):
         keys = pygame.key.get_pressed()
-        moving = True
+        print(self.vel)
+        moving = False
         if keys[pygame.K_LEFT]:
             self.rotate(left=True)
         if keys[pygame.K_RIGHT]:
             self.rotate(right=True)
         if keys[pygame.K_UP]:
+            moving = True
             self.move_forward()
-        if moving == False:
+        if keys[pygame.K_DOWN]:
+            self.brake()
+        if not moving:
             self.reduce_speed()
+
 
     def draw_vehicle(self, screen):
         utils.blit_rotate_center(screen, self.car_1, (self.x, self.y), self.angle)
@@ -51,4 +55,8 @@ class Vehicle:
 
     def reduce_speed(self):
         self.vel = max(self.vel - self.acceleration / 2, 0)
+        self.move_vehicle()
+
+    def brake(self):
+        self.vel = max(self.vel - self.acceleration * 4 , 0)
         self.move_vehicle()

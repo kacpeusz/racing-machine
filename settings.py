@@ -9,6 +9,7 @@ background = pygame.image.load("./assets/track.jpg")
 
 VEHICLE_WIDTH = 70
 VEHICLE_HEIGHT = 35
-VEHICLE_SPEED = 0.25
+VEHICLE_MAX_VELOCITY = 0.4
+VEHICLE_ROTATION_VELOCITY = 0.2
 
 BLUE = (0, 0, 255)
